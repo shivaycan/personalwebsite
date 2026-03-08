@@ -5,11 +5,11 @@ import { SiteNav } from '@/components/site-nav';
 import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: 'Personal Blog',
-  description: 'MDX-powered personal writing by SHI.VAY.'
+  title: 'VAYNOTES',
+  description: 'Personal writing and notes by SHI.VAY.'
 };
 
-export default function BlogPage() {
+export default function VayNotesPage() {
   const posts = getAllPosts();
 
   return (
@@ -18,10 +18,10 @@ export default function BlogPage() {
         <SiteNav />
       </div>
       <h1
-        className="fade-up mb-8 text-3xl font-semibold tracking-tight text-neutral-100 sm:text-4xl"
+        className="editorial fade-up mb-8 text-4xl tracking-tight text-neutral-100 sm:text-5xl"
         style={{ '--delay': '120ms' } as CSSProperties}
       >
-        Personal Blog
+        VAYNOTES
       </h1>
       <div className="space-y-8">
         {posts.map((post, index) => (
@@ -30,17 +30,17 @@ export default function BlogPage() {
             style={{ '--delay': `${170 + index * 80}ms` } as CSSProperties}
             key={post.slug}
           >
-            <h2 className="text-2xl font-medium">
-              <Link className="hairline-link" href={`/blog/${post.slug}`}>
+            <h2 className="editorial text-3xl leading-tight">
+              <Link className="hairline-link" href={`/vaynotes/${post.slug}`}>
                 {post.title}
               </Link>
             </h2>
             <p className="mt-2 text-sm text-neutral-400">{post.date}</p>
-            <div className="mt-2 flex flex-wrap gap-2">
+            <div className="mt-3 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={`${post.slug}-${tag}`}
-                  className="rounded-full border border-white/20 px-2.5 py-1 text-xs text-neutral-300"
+                  className="rounded-full border border-white/20 px-2.5 py-1 text-xs uppercase tracking-[0.14em] text-neutral-300"
                 >
                   {tag}
                 </span>

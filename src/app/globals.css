@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-  --bg: #ffffff;
-  --fg: #0a0a0a;
-  --muted: #6b7280;
-  --line: #d4d4d8;
-  --line-strong: #0a0a0a;
+  color-scheme: dark;
+  --bg: #050507;
+  --fg: #f3f4f6;
+  --muted: #a1a1aa;
+  --line: #3f3f46;
+  --line-strong: #f9fafb;
 }
 
 html,
@@ -31,8 +31,8 @@ h3,
 }
 
 ::selection {
-  background: #111111;
-  color: #ffffff;
+  background: #f4f4f5;
+  color: #050507;
 }
 
 a {
@@ -57,6 +57,137 @@ a:hover {
 
 .home-grid {
   @apply mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr];
+}
+
+.bharat-shell {
+  @apply min-h-screen px-6 py-14 sm:py-20;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 153, 51, 0.12), transparent 48%),
+    radial-gradient(circle at 86% 80%, rgba(19, 136, 8, 0.1), transparent 44%),
+    radial-gradient(circle at 52% 8%, rgba(122, 162, 255, 0.1), transparent 35%),
+    linear-gradient(165deg, #07070b 0%, #09090d 52%, #030304 100%);
+}
+
+.bharat-frame {
+  @apply relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2.5rem] bg-black/35 p-8 backdrop-blur-xl sm:p-12;
+}
+
+.bharat-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+  pointer-events: none;
+}
+
+.rangoli-glow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 90deg,
+      rgba(255, 153, 51, 0.35),
+      rgba(255, 255, 255, 0.03),
+      rgba(19, 136, 8, 0.3),
+      rgba(71, 85, 255, 0.25),
+      rgba(255, 153, 51, 0.35)
+    );
+  filter: blur(24px);
+  opacity: 0.65;
+}
+
+.rangoli-left {
+  left: -90px;
+  top: -80px;
+}
+
+.rangoli-right {
+  right: -90px;
+  bottom: -90px;
+}
+
+.vay-trigger {
+  @apply relative rounded-full bg-neutral-100 px-4 py-1.5 text-4xl font-semibold lowercase text-neutral-950 shadow-lg shadow-black/40 transition-all duration-500 sm:text-6xl;
+  animation: floatWord 3.4s ease-in-out infinite;
+}
+
+.vay-trigger:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.vay-dropdown {
+  @apply pointer-events-none absolute left-1/2 top-[calc(100%+0.75rem)] z-30 w-52 -translate-x-1/2 translate-y-2 rounded-2xl border border-neutral-700 bg-neutral-950 p-2 opacity-0 shadow-2xl;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.vay-dropdown-open {
+  @apply pointer-events-auto opacity-100;
+  transform: translateX(-50%) translateY(0);
+}
+
+.vay-option {
+  @apply block rounded-xl px-3 py-2 text-sm font-semibold lowercase tracking-[0.06em] text-neutral-200 transition-colors;
+}
+
+.vay-option:hover {
+  @apply bg-neutral-800 text-white;
+}
+
+.vaynotes-band {
+  @apply mt-16 rounded-3xl bg-white/[0.04] p-6 shadow-[0_20px_80px_-45px_rgba(0,0,0,0.75)] ring-1 ring-white/10 backdrop-blur-sm sm:p-8;
+}
+
+.vaynotes-head {
+  @apply flex flex-wrap items-center justify-between gap-4;
+}
+
+.vaynotes-grid {
+  @apply mt-8 grid gap-4 md:grid-cols-3;
+}
+
+.note-card {
+  @apply rounded-2xl bg-black/35 p-5 shadow-[0_12px_28px_-22px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition-all duration-500;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 38px -28px rgba(0, 0, 0, 0.5);
+}
+
+.hero-word {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 700;
+}
+
+.hero-word > span {
+  display: inline-block;
+  animation: heroStretch 1.3s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+@keyframes heroStretch {
+  0% {
+    transform: translateY(14px) scale(0.94);
+    opacity: 0;
+    letter-spacing: 0.08em;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    letter-spacing: 0.02em;
+  }
+}
+
+@keyframes floatWord {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 .hero-art {
@@ -97,7 +228,7 @@ a:hover {
 .hairline-link {
   position: relative;
   text-decoration: none;
-  color: #111111;
+  color: #f4f4f5;
 }
 
 .hairline-link::after {
@@ -107,7 +238,7 @@ a:hover {
   bottom: -0.3rem;
   width: 100%;
   height: 1px;
-  background: #111111;
+  background: #f4f4f5;
   transform: scaleX(0.2);
   transform-origin: left;
   opacity: 0.45;
@@ -127,11 +258,11 @@ a:hover {
 }
 
 .tile {
-  @apply rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300;
+  @apply rounded-2xl border border-white/15 bg-black/30 p-6 transition-all duration-300;
 }
 
 .tile:hover {
-  border-color: #0a0a0a;
+  border-color: #fafafa;
   transform: translateY(-2px);
 }
 
@@ -150,8 +281,18 @@ a:hover {
   }
 
   .tile,
+  .note-card,
+  .vay-trigger,
+  .vay-dropdown,
+  .vay-option,
+  .hero-word > span,
   .hairline-link::after,
   a {
     transition: none;
+  }
+
+  .vay-trigger,
+  .hero-word > span {
+    animation: none;
   }
 }

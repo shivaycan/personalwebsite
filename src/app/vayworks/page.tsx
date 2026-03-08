@@ -4,21 +4,21 @@ import { SiteNav } from '@/components/site-nav';
 import { projects } from '@/lib/projects';
 
 export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'GitHub projects by SHI.VAY.'
+  title: 'VAYWORKS',
+  description: 'Project work by SHI.VAY.'
 };
 
-export default function ProjectsPage() {
+export default function VayWorksPage() {
   return (
     <main className="page-shell">
       <div className="fade-up" style={{ '--delay': '40ms' } as CSSProperties}>
         <SiteNav />
       </div>
       <h1
-        className="fade-up mb-8 text-3xl font-semibold tracking-tight text-neutral-100 sm:text-4xl"
+        className="editorial fade-up mb-8 text-4xl tracking-tight text-neutral-100 sm:text-5xl"
         style={{ '--delay': '120ms' } as CSSProperties}
       >
-        Projects
+        VAYWORKS
       </h1>
       <div className="space-y-8">
         {projects.map((project, index) => (
@@ -27,7 +27,7 @@ export default function ProjectsPage() {
             style={{ '--delay': `${170 + index * 80}ms` } as CSSProperties}
             key={project.name}
           >
-            <h2 className="text-xl font-medium">{project.name}</h2>
+            <h2 className="text-2xl font-medium">{project.name}</h2>
             <p className="mt-2 text-neutral-300">{project.description}</p>
             <p className="mt-3 text-sm text-neutral-300">
               GitHub:{' '}

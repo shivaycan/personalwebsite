@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     const { frontmatter } = getPostBySlug(slug);
     return {
       title: frontmatter.title,
-      description: `Read ${frontmatter.title} on the personal blog.`
+      description: `Read ${frontmatter.title} on VAYNOTES.`
     };
   } catch {
     return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   }
 }
 
-export default async function BlogPostPage({ params }: PostPageProps) {
+export default async function VayNotesPostPage({ params }: PostPageProps) {
   const { slug } = await params;
 
   try {

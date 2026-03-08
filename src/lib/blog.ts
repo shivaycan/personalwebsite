@@ -14,7 +14,22 @@ export type BlogPostMeta = BlogFrontmatter & {
   slug: string;
 };
 
-export function getAllSlugs(): string[] {
+type PostFile = {
+  fileName: string;
+  slug: string;
+};
+
+function createSlug(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/\.mdx$/, '')
+    .replace(/['"]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function getPostFiles(): PostFile[] {
   if (!fs.existsSync(blogDirectory)) {
     return [];
   }
@@ -22,14 +37,26 @@ export function getAllSlugs(): string[] {
   return fs
     .readdirSync(blogDirectory)
     .filter((file) => file.endsWith('.mdx'))
-    .map((file) => file.replace(/\.mdx$/, ''));
+    .map((fileName) => ({
+      fileName,
+      slug: createSlug(fileName)
+    }));
+}
+
+export function getAllSlugs(): string[] {
+  return getPostFiles().map((post) => post.slug);
 }
 
 export function getPostBySlug(slug: string): {
   frontmatter: BlogFrontmatter;
   content: string;
 } {
-  const filePath = path.join(blogDirectory, `${slug}.mdx`);
+  const match = getPostFiles().find((post) => post.slug === createSlug(slug));
+  if (!match) {
+    throw new Error(`Post not found for slug: ${slug}`);
+  }
+
+  const filePath = path.join(blogDirectory, match.fileName);
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContent);
 
@@ -44,11 +71,11 @@ export function getPostBySlug(slug: string): {
 }
 
 export function getAllPosts(): BlogPostMeta[] {
-  return getAllSlugs()
-    .map((slug) => {
-      const { frontmatter } = getPostBySlug(slug);
+  return getPostFiles()
+    .map((post) => {
+      const { frontmatter } = getPostBySlug(post.slug);
       return {
-        slug,
+        slug: post.slug,
         ...frontmatter
       };
     })

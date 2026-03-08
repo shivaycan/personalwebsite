@@ -1,94 +1,81 @@
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
+import { VayMenu } from '@/components/vay-menu';
 import { getAllPosts } from '@/lib/blog';
-import { projects } from '@/lib/projects';
 
 export default function HomePage() {
-  const latestPosts = getAllPosts().slice(0, 2);
+  const latestPosts = getAllPosts().slice(0, 3);
 
   return (
-    <main className="home-shell">
-      <section className="home-grid">
-        <div>
-          <p
-            className="fade-up text-xs uppercase tracking-[0.28em] text-neutral-500"
-            style={{ '--delay': '40ms' } as CSSProperties}
-          >
-            Portfolio + Journal
-          </p>
-          <h1
-            className="editorial fade-up mt-5 text-6xl leading-none tracking-[0.1em] text-neutral-950 sm:text-8xl"
-            style={{ '--delay': '100ms' } as CSSProperties}
-          >
-            SHI.VAY
-          </h1>
-          <p
-            className="fade-up mt-8 max-w-xl text-base leading-8 text-neutral-700 sm:text-lg"
-            style={{ '--delay': '180ms' } as CSSProperties}
-          >
-            Building thoughtful software, sharing practical ideas, and documenting real work in
-            public.
-          </p>
-          <div
-            className="fade-up mt-9 flex flex-wrap items-center gap-8 text-base font-semibold"
-            style={{ '--delay': '260ms' } as CSSProperties}
-          >
-            <Link className="hairline-link" href="/projects">
-              Projects
-            </Link>
-            <Link className="hairline-link" href="/blog">
-              Personal Blog
+    <main className="bharat-shell">
+      <section className="bharat-frame">
+        <div className="rangoli-glow rangoli-left" />
+        <div className="rangoli-glow rangoli-right" />
+        <p
+          className="fade-up text-center text-xs uppercase tracking-[0.26em] text-neutral-400"
+          style={{ '--delay': '40ms' } as CSSProperties}
+        >
+          Crafted in public
+        </p>
+
+        <h1
+          className="hero-word fade-up mt-8 flex flex-wrap items-center justify-center gap-1 text-6xl tracking-wide text-neutral-100 sm:text-8xl md:text-9xl"
+          style={{ '--delay': '120ms' } as CSSProperties}
+        >
+          <span>shi.</span>
+          <VayMenu />
+        </h1>
+
+        <p
+          className="fade-up mx-auto mt-8 max-w-2xl text-center text-base leading-8 text-neutral-300 sm:text-lg"
+          style={{ '--delay': '210ms' } as CSSProperties}
+        >
+          Software builder from India, blending engineering systems with intentional design.
+          This space combines my project journey and personal notes.
+        </p>
+
+        <div
+          className="fade-up mt-10 flex flex-wrap justify-center gap-8 text-sm font-semibold lowercase tracking-[0.12em]"
+          style={{ '--delay': '280ms' } as CSSProperties}
+        >
+          <Link className="hairline-link" href="/vayworks">
+            vayworks
+          </Link>
+          <Link className="hairline-link" href="/vaynotes">
+            vaynotes
+          </Link>
+        </div>
+
+        <section className="vaynotes-band fade-up" style={{ '--delay': '360ms' } as CSSProperties}>
+          <div className="vaynotes-head">
+            <h2 className="editorial text-3xl lowercase sm:text-4xl">vaynotes</h2>
+            <Link className="hairline-link text-sm" href="/vaynotes">
+              View all notes
             </Link>
           </div>
-
-          <div className="mt-14 grid gap-4 sm:grid-cols-2">
-            {projects.slice(0, 2).map((project, index) => (
-              <article
-                className="tile fade-up"
-                style={{ '--delay': `${320 + index * 90}ms` } as CSSProperties}
-                key={project.name}
-              >
-                <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">Project</p>
-                <h2 className="editorial mt-2 text-2xl leading-tight">{project.name}</h2>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">{project.description}</p>
-                <a className="hairline-link mt-4 inline-block text-sm" href={project.github}>
-                  View on GitHub
-                </a>
+          <div className="vaynotes-grid">
+            {latestPosts.map((post) => (
+              <article className="note-card" key={post.slug}>
+                <p className="text-xs uppercase tracking-[0.15em] text-neutral-400">{post.date}</p>
+                <h3 className="editorial mt-3 text-2xl leading-tight">
+                  <Link className="hairline-link" href={`/vaynotes/${post.slug}`}>
+                    {post.title}
+                  </Link>
+                </h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      className="rounded-full border border-white/25 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-neutral-300"
+                      key={`${post.slug}-${tag}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
-        </div>
-
-        <div className="fade-up" style={{ '--delay': '220ms' } as CSSProperties}>
-          <div className="hero-art">
-            <div className="grid-line absolute inset-0 rounded-3xl" />
-            <div className="relative z-10">
-              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">Latest Writing</p>
-              <div className="mt-6 space-y-6">
-                {latestPosts.map((post) => (
-                  <article key={post.slug}>
-                    <p className="text-xs text-neutral-500">{post.date}</p>
-                    <h3 className="editorial mt-2 text-2xl leading-tight text-neutral-900">
-                      <Link className="hairline-link" href={`/blog/${post.slug}`}>
-                        {post.title}
-                      </Link>
-                    </h3>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={`${post.slug}-${tag}`}
-                          className="rounded-full border border-neutral-300 px-2.5 py-1 text-[11px] uppercase tracking-wider text-neutral-700"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </section>
     </main>
   );
