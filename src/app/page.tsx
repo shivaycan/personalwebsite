@@ -4,7 +4,7 @@ import { VayMenu } from '@/components/vay-menu';
 import { getAllPosts } from '@/lib/blog';
 
 export default function HomePage() {
-  const latestPosts = getAllPosts().slice(0, 3);
+  const latestPosts = getAllPosts();
 
   return (
     <main className="bharat-shell">
