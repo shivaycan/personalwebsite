@@ -44,6 +44,9 @@ export default function HomePage() {
           <Link className="hairline-link" href="/vaynotes">
             vaynotes
           </Link>
+          <Link className="hairline-link" href="/writeup">
+            writeup
+          </Link>
         </div>
 
         <section className="vaynotes-band fade-up" style={{ '--delay': '360ms' } as CSSProperties}>

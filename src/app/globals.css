@@ -157,6 +157,55 @@ a:hover {
   box-shadow: 0 20px 38px -28px rgba(0, 0, 0, 0.5);
 }
 
+.editor-shell {
+  @apply rounded-3xl bg-black/35 p-6 ring-1 ring-white/10 sm:p-8;
+}
+
+.editor-grid {
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+.editor-label {
+  @apply block text-sm font-medium text-neutral-300;
+}
+
+.editor-input {
+  @apply mt-2 w-full rounded-xl border border-white/15 bg-black/50 px-3 py-2 text-neutral-100 outline-none transition-colors;
+}
+
+.editor-input:focus {
+  @apply border-white/40;
+}
+
+.editor-toolbar {
+  @apply flex flex-wrap gap-2;
+}
+
+.editor-btn {
+  @apply rounded-lg border border-white/15 bg-black/40 px-3 py-1.5 text-xs text-neutral-200 transition-colors;
+}
+
+.editor-btn:hover {
+  @apply border-white/35 bg-black/70;
+}
+
+.editor-area {
+  @apply mt-2 min-h-[340px] w-full rounded-2xl border border-white/15 bg-black/55 p-4 text-neutral-100 outline-none transition-colors;
+  resize: vertical;
+}
+
+.editor-area:focus {
+  @apply border-white/40;
+}
+
+.editor-publish {
+  @apply rounded-full bg-white px-5 py-2 text-sm font-semibold lowercase text-black transition-opacity;
+}
+
+.editor-publish:disabled {
+  @apply opacity-60;
+}
+
 .hero-word {
   font-family: var(--font-editorial), Georgia, serif;
   font-weight: 700;
